@@ -10,6 +10,7 @@ class CompaniesController < ApplicationController
   end
 
   def show
+    @company_decorator = helpers.decorate(@company)
   end
 
   def create
@@ -17,7 +18,8 @@ class CompaniesController < ApplicationController
     if @company.save
       redirect_to companies_path, notice: "Saved"
     else
-      render :new
+      flash[:error] = "<ul>" + @company.errors.full_messages.map{|o| "<li>" + o + "</li>" }.join("") + "</ul>"
+      render new_company_path
     end
   end
 
@@ -31,6 +33,14 @@ class CompaniesController < ApplicationController
       render :edit
     end
   end  
+
+  def destroy
+    if @company.destroy
+      redirect_to companies_path, notice: t('common.deleted_successfully', model_name: Company.name)
+    else
+      redirect_to companies_path, error: t('invalid_value')
+    end
+  end
 
   private
 

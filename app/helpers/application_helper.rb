@@ -8,5 +8,12 @@ module ApplicationHelper
       notice: "alert-info"
     }.stringify_keys[flash_type.to_s] || flash_type.to_s
   end
+
+  ###################
+  # decorate helper #
+  ###################
+  def decorate(model, decorate_class = nil)
+   (decorate_class || "#{model.class}Decorator".constantize).new(model)
+  end
   
 end

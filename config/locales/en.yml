@@ -31,3 +31,7 @@
 
 en:
   hello: "Hello world"
+  common:
+    deleted_successfully: "%{model_name} deleted successfully"
+  delete_msg: "Are you sure?"
+  invalid_value: "Invalid identifier found"

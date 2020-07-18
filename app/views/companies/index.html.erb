@@ -9,6 +9,8 @@
         <a href="<%= company_path(company) %>" class="list-group-item list-group-item-action">
           <%= company.name %>
         </a>
+        <%= link_to 'Edit', edit_company_path(company), class: "btn btn-primary" %>
+        <%= link_to 'Delete', company_path(company), method: :delete, data: {confirm: t('delete_msg')}, class: "btn btn-danger"%>
       <% end %>
     </ul>
   <% end %>
